@@ -1,0 +1,9 @@
+{
+  "name": "stock-management-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/stock-management-e2e/src",
+  "implicitDependencies": ["stock-management"],
+  "// targets": "to see all targets run: nx show project stock-management-e2e --web",
+  "targets": {}
+}
