@@ -1,0 +1,9 @@
+{
+  "name": "stock-frontend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/stock-frontend/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project stock-frontend --web",
+  "targets": {}
+}

@@ -1,0 +1,9 @@
+{
+  "name": "stock-frontend-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/stock-frontend-e2e/src",
+  "implicitDependencies": ["stock-frontend"],
+  "// targets": "to see all targets run: nx show project stock-frontend-e2e --web",
+  "targets": {}
+}
