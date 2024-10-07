@@ -1,82 +1,69 @@
 # StockManagement
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
-
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
-
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
-
-## Finish your remote caching setup
-
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/kUI2vbdXpF)
+This is the stock management project, which is the assignment as the part of the recruitment process. 
 
 
-## Run tasks
+## Prerequisite
 
-To run the dev server for your app, use:
+- MongoDB installed.
+- `npm` or `nx` installed.
+- Node.js version 20.18.0
 
-```sh
-npx nx serve stock-management
-```
 
-To create a production bundle:
+# First time project setup
+
+After cloning this project, please make sure you have installed `npm` on your machine. This documentation will not cover how to install Node.js, MongoDB, and `npm`.
+
+Also, please make sure you have the correct MongoDB connection string, as well as the `nx` that has been installed on your machine by using this command:
 
 ```sh
-npx nx build stock-management
+npm install -g  nx
 ```
 
-To see all available targets to run for a project, run:
+Then, please navigate to the path where you clone this repository by the command prompt or your preferred terminal, and go to the `stock-api` directory from the root and copy/rename file `.env.sample` to `.env` within the directory, and replace `MONGODB_CONNECTION_URI` with your MongoDB connection string that installed on your machine.
+
+Optionally, if you have your own API key from financialmodelingprep.com, you can use it by navigating to `stock-frontend` from the root and change `VITE_STOCK_API_KEY` inside `.env` file to your preferred API key.
+
+Please feel free to use the provided API key. However, it is a API key from a free subscription plan, which limits to 250 calls/day and can retrieve the stock quote information for the stock in the US market only.
+
+Last but not least, navigate to the root and run this command below to install all required components.
 
 ```sh
-npx nx show project stock-management
+npm install --force
 ```
-        
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-## Add new projects
+## Run the project
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+You need 2 terminals to run the project. Go to the root on both terminals.
 
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
+First terminal run this command below to demonstrate the API.
 
 ```sh
-npx nx g @nx/react:app demo
+nx serve stock-api
 ```
 
-To generate a new library, use:
+Second terminal run this command below to demonstrate the UI.
 
 ```sh
-npx nx g @nx/react:lib mylib
+nx serve stock-frontend
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
-
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Then, open your web browser (Chrome is recommended) and visit this site `http://localhost:4200` to start using the application.
 
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-## Install Nx Console
+## Run unit test
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+To run the unit test, please use your preferred terminal and navigate to the root of the project, then run this command
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+```sh
+nx test stock-api
+```
 
-## Useful links
 
-Learn more:
+## Features
 
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- Search the stock by its symbol, and click to add it to the portfolio.
+- You can view each stock on your portfolio, as well as delete it.
+- Everytime you access the portfolio page, it will refresh the latest stock quote on all your stocks within your portfolio. If there are changes on the price and volume, it will record to the database.
