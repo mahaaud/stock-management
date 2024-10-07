@@ -5,7 +5,7 @@ import { Portfolio } from './portfolio.schema';
 import { StockItemDto } from './dto/stock.dto';
 
 @Injectable()
-export class PortfolioService {
+export default class PortfolioService {
     constructor(
         @InjectModel('Portfolio') private readonly portfolioModel: Model<Portfolio>,
     ) { }

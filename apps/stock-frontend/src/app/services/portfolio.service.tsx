@@ -1,18 +1,18 @@
 import axios from "axios";
 
 export async function fetchPortfolio(userId: string): Promise<any> {
-    const response = await axios.get(`http://localhost:3000/api/portfolio/${userId}`);
+    const response = await axios.get(`${import.meta.env.VITE_PORTFOLIO_API_URL}/api/portfolio/${userId}`);
     return response.data;
 }
 
 export async function addNewStockToPortfolio(userId: string, stock: StockItem): Promise<void> {
-    await axios.post(`http://localhost:3000/api/portfolio/${userId}`, stock);
+    await axios.post(`${import.meta.env.VITE_PORTFOLIO_API_URL}/api/portfolio/${userId}`, stock);
 }
 
 export async function updateStockOnPortfolio(userId: string, stock: StockItem): Promise<void> {
-    await axios.put(`http://localhost:3000/api/portfolio/${userId}`, stock);
+    await axios.put(`${import.meta.env.VITE_PORTFOLIO_API_URL}/api/portfolio/${userId}`, stock);
 }
 
 export async function removeStockFromPortfolio(userId: string, symbol: string): Promise<void> {
-    await axios.delete(`http://localhost:3000/api/portfolio/${userId}/${symbol}`);
+    await axios.delete(`${import.meta.env.VITE_PORTFOLIO_API_URL}/api/portfolio/${userId}/${symbol}`);
 }

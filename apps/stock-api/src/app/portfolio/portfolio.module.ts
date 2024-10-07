@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PortfolioSchema } from './portfolio.schema';
-import { PortfolioService } from './portfolio.service';
 import { PortfolioController } from './portfolio.controller';
+import PortfolioService from './portfolio.service';
 
 @Module({
   imports: [

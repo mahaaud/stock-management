@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Put, Body, Param, Delete } from '@nestjs/common';
-import { PortfolioService } from './portfolio.service';
+import PortfolioService from './portfolio.service';
 import { Portfolio } from './portfolio.schema';
 import { StockItemDto } from './dto/stock.dto';
 

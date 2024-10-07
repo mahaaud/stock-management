@@ -1,6 +1,5 @@
 import { makeAutoObservable } from "mobx";
 import { addNewStockToPortfolio, fetchPortfolio, removeStockFromPortfolio } from "../app/services/portfolio.service";
-import { fetchSelectedStockQuote } from "../app/services/stock.service";
 
 class PortfolioStore {
 
