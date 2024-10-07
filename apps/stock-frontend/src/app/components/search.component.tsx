@@ -1,47 +1,33 @@
 import { fetchSearchStocks } from "../services/stock.service";
 import { AsyncPaginate } from "react-select-async-paginate";
 
-export function StockSearch({ onSearchClicked }: any): any {
+export function StockSearch({ onSearchClicked, onError }: any): any {
 
     const loadOptions = async (inputValue: string, callback: any) => {
         if (inputValue.length <= 2) {
             callback(null);
         }
 
-        const stockSearchResult = await fetchSearchStocks(inputValue);
+        try {
+            const stockSearchResult = await fetchSearchStocks(inputValue);
 
             return {
-                options: stockSearchResult.map((stock: StockItem) => {
+                options: stockSearchResult.map((stock: StockInfo) => {
                     return {
                         value: stock,
                         label: `${stock.symbol} - ${stock.name}, ${stock.exchangeShortName} (${stock.currency})`
                     }
                 }),
             }
+        } catch (error) {
+            onError();
+            console.error(error);
+        }
     };
 
     const onChangeHandler = (enteredData: any) => {
         onSearchClicked(enteredData);
     };
-
-    /*let useClickOutside = (handler: any) => {
-        let domNode = useRef(null);
-        useEffect(() => {
-            let maybeHandler = (event: any) => {
-                if (!domNode.current.contains(event.target)) {
-                    handler();
-                }
-            };
-
-            document.addEventListener("mousedown", maybeHandler);
-
-            return () => {
-                document.removeEventListener("mousedown", maybeHandler);
-            };
-        });
-
-        return domNode;
-    };*/
 
     return (
         <section>

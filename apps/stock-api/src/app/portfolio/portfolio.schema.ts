@@ -1,17 +1,18 @@
 import { Schema, Document } from 'mongoose';
 
+export const StockSchema = new Schema({
+    symbol: { type: String, required: true },
+    name: { type: String, required: true },
+    price: { type: Number, required: true },
+    volume: { type: Number, required: true },
+    currency: { type: String, required: true },
+    exchange: { type: String, required: true },
+    lastUpdated: { type: Date, default: Date.now }
+});
+
 export const PortfolioSchema = new Schema({
     userId: { type: String, required: true },
-    stocks: [
-        {
-            symbol: { type: String, required: true },
-            name: { type: String, required: true },
-            price: { type: Number, required: true },
-            volume: { type: Number, required: true },
-            currency: { type: String, required: true },
-            exchange: { type: String, required: true }
-        },
-    ],
+    stocks: [StockSchema],
 });
 
 export interface Portfolio extends Document {
@@ -23,5 +24,6 @@ export interface Portfolio extends Document {
         volume: number;
         currency: string;
         exchange: string;
+        lastUpdated: Date;
     }>;
 }

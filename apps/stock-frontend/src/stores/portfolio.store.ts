@@ -1,33 +1,28 @@
 import { makeAutoObservable } from "mobx";
-import { fetchPortfolio } from "../app/services/portfolio.service";
+import { addNewStockToPortfolio, fetchPortfolio, removeStockFromPortfolio } from "../app/services/portfolio.service";
+import { fetchSelectedStockQuote } from "../app/services/stock.service";
 
 class PortfolioStore {
 
-    portfolio = [];
+    portfolio: Portfolio[] = [];
 
     constructor() {
         makeAutoObservable(this);
     }
 
-    async getAllUserPortfolios() {
-        try {
-            const respond = await fetchPortfolio();
-            this.portfolio = respond.data;
-        } catch (error) {
-            console.error("Error fetching portfolio", error);
-        }
+    async getUserPortfolio(userId: string): Promise<void> {
+        this.portfolio = await fetchPortfolio(userId);
     }
 
-    addStock(stock) {
-        this.portfolio.push(stock);
+
+    async addStock(userId: string, stock: StockItem): Promise<void> {
+        await addNewStockToPortfolio(userId, stock);
+        this.getUserPortfolio(userId);
     }
 
-    removeStock(stockSymbol) {
-        this.portfolio = this.portfolio.filter(stock => stock.symbol !== stockSymbol);
-    }
-
-    get totalValue() {
-        return this.portfolio.reduce((total, stock) => total + (stock.quantity * stock.price), 0);
+    async removeStock(userId: string, symbol: string) {
+        await removeStockFromPortfolio(userId, symbol);
+        this.getUserPortfolio(userId);
     }
 
 }
